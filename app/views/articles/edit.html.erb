@@ -1,10 +1,24 @@
-<h1>Edit article</h1>
-<%= form_for(@article) do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
 
-  <%= f.label :content %>
-  <%= f.text_area :content %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <h1 id="edit_title">Edit article</h1>
+      <%= simple_form_for(@article) do |f| %>
+        <%= f.input :title, label: 'Title' %>
+        <%= f.input :content, :as => :hidden, :input_html => { :value => @article.content } %>
+      <div id="my-editor">
+        <div id="editor"><%= @article.content %></div>
+      </div>
+        <%= f.submit class: "btn btn-success", id: "submit_bouton" %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-  <%= f.submit %>
-<% end %>
+
+<%= javascript_include_tag "get_text_from_editor" %>
+<%= javascript_tag "
+    var editor = ace.edit('editor');
+    editor.setTheme('ace/theme/twilight');
+    editor.session.setMode('ace/mode/plaintext');"
+%>

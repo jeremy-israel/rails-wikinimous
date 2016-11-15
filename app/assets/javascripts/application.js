@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require ace-rails-ap
+//= require ace/theme-twilight
+//= require ace/mode-javascript
+//= require bootstrap-sprockets
